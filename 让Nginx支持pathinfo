@@ -1,0 +1,1 @@
+Nginx服务器默认不支持pathinfo, 在需要pathinfo支持的程序中(如thinkphp),则无法支持”/index.php/Home/Index/index”这种网址.
