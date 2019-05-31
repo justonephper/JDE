@@ -1,0 +1,39 @@
+#!/bin/bash
+BIN_DIR="/usr/sbin"
+
+if [[ $USER != "root" ]]; then
+    echo "please use sudo instruct ...";
+    exit 1;
+fi
+
+echo "开始重启!";
+echo -e "nginx \033[31mstop\033[0m ..."
+echo -e "nginx \033[33mstart\033[0m ..."
+
+#关闭nginx服务
+$BIN_DIR/service nginx restart
+echo -e "nginx \033[32mrunning\033[0m ..."
+
+#关闭mysql服务
+echo -e "mysql \033[31mstop\033[0m ..."
+echo -e "mysql \033[33mstart\033[0m ..."
+$BIN_DIR/service mysql restart
+echo -e "mysql \033[32mrunning\033[0m ..."
+
+#关闭redis-server服务
+echo -e "redis-server \033[31mstop\033[0m ..."
+echo -e "redis-server \033[33mstart\033[0m ..."
+$BIN_DIR/service redis-server restart
+echo -e "redis-server \033[32mrunning\033[0m ..."
+
+#关闭php7.2-fpm服务
+echo -e "php7.2-fpm \033[31mstop\033[0m ..."
+echo -e "php7.2-fpm \033[33mstart\033[0m ..."
+$BIN_DIR/service php7.2-fpm restart
+echo -e "php7.2-fpm \033[32mrunning\033[0m ..."
+
+#关闭supervisor服务
+echo -e "supervisor \033[31mstop\033[0m ..."
+echo -e "supervisor \033[33mstart\033[0m ..."
+$BIN_DIR/service supervisor restart
+echo -e "supersivor \033[32mrunning\033[0m ..."
