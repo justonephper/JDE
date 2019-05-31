@@ -1,0 +1,35 @@
+关闭启动所有服务
+#!/bin/bash
+BIN_DIR="/usr/sbin"
+
+if [[ $USER != "root" ]]; then
+    echo "please use sudo instruct ...";
+    exit 1;
+fi
+
+echo -e "\033[36m 开始启动! \033[0m";
+echo -e "\033[33mnginx start ...\033[0m"
+
+#关闭nginx服务
+$BIN_DIR/service nginx start
+echo -e "\033[32mnginx running ...\033[0m"
+
+#关闭mysql服务
+echo -e "\033[33mmysql start ...\033[0m"
+$BIN_DIR/service mysql start
+echo -e "\033[32mmysql running ...\033[0m"
+
+#关闭redis-server服务
+echo -e "\033[33mredis-server start ...\033[0m"
+$BIN_DIR/service redis-server start
+echo -e "\033[32mredis-server running ...\033[0m"
+
+#关闭php7.2-fpm服务
+echo -e "\033[33mphp7.2-fpm start ...\033[0m"
+$BIN_DIR/service php7.2-fpm start
+echo -e "\033[32mphp7.2-fpm running ...\033[0m"
+
+#关闭supervisor服务
+echo -e "\033[33msupervisor start ...\033[0m"
+$BIN_DIR/service supervisor start
+echo -e "\033[32msupervisor running ...\033[0m"
