@@ -6,7 +6,7 @@ if [[ $USER != "root" ]]; then
     exit 1;
 fi
 
-echo "开始重启!";
+echo -e "\033[36m 开始重启! \033[0m";
 echo -e "nginx \033[31mstop\033[0m ..."
 echo -e "nginx \033[33mstart\033[0m ..."
 
