@@ -1,0 +1,21 @@
+源码安装nginx程序，虽然安装过n遍了，但是今天重新整理记录一次
+
+pos1:源码准备,安装最新稳定版本（1.16）
+    wget http://nginx.org/download/nginx-1.16.0.tar.gz    #下载
+    tar -zxvf nginx-1.19.0.tar.gz                         #解压
+    mv /usr/local/src/                                    #习惯性将源码移动到这里
+    cd nginx-1.16.0
+    ./configure --help                                    #查看nginx安装的配置参数
+    发现没有特殊癖好，需要添加ssl支持，和自定义安装路径，所以配置参数如下：
+    ./configure --prefix=/usr/local/nginx --user=www --group=www --with-http_ssl_module
+    make && make install                                  #编译，安装
+    
+pos2:已经安装完成，发现使用nginx的二进制文件不太方便，所以添加一个软链接吧
+    ln -s /usr/local/nginx/sbin/nginx /usr/sbin   回车
+    which nginx               # /usr/sbin/nginx
+    nginx -V                  #　nginx 1.16.0
+    nginx -t                  #检测配置文件
+    nginx                     ＃启动nginx
+    nginx -s reload           ＃重新locad配置文件
+        
+over,thanks!
