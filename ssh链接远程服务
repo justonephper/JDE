@@ -1,0 +1,9 @@
+1.问题：本地系统是ubuntu16.0,没有了windows系统下的Xshell工具，还好linux系统下提供ssh命令行工具
+  远程服务一定是开启了ssh-server服务，否则xshel也不可能链接上，进行日常的维护和管理
+  eg1:
+      ssh user_name@127.0.0.1   回车
+      键入user_pwd               回车
+      
+      connect success ...
+      指令 a,b,c
+      exit                      #退出
