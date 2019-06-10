@@ -1,0 +1,5 @@
+1.设置vim下的tab键的长度
+  vim /etc/vim/vimrc
+  翻滚到最后一行，键入：settabstop=2
+  :wq!
+  over!
