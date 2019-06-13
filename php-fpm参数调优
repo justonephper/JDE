@@ -1,0 +1,25 @@
+1.WARNING: [pool www] seems busy (you may need to increase pm.start_servers, or pm.min/max_spare_servers), spawning 8 children, there are 6 idle, and 23 total children
+2.WARNING: [pool www] server reached pm.max_children setting (32), consider raising it
+
+提示1：产生8个进程，目前空闲6个进程，总共23个进程
+提示2：最大进程数太小
+措施:
+    根据提示，添加了8个进程之后，有6个空闲，目前是23个，那变化前的进程数是15，因为添加8个进程之后才有6个空闲进程，所以至少添加两个进程才能满足条件，修改
+配置文件，在之前的基础之上添加4个进程，最大空闲进程数添加4个，默认启动进程数量（min_spare_servers + (max_spare_servers - min_spare_servers) / 2）
+
+pm.max_children=64         #the maximum number of children that can be alive at the same time（最大同时存在的woker进程数）
+pm.start_servers=20        #动态模式下，开启的初始开始的进程数
+pm.min_spare_servers=16    #空闲状态下，最小进程数
+pm.max_spare_servers=24    #空闲状态下，最大进程数
+
+实际操作：
+  上游服务，添加睡眠程序使php-fpm阻塞，不断打开请求页面，全部阻塞，此时最大进程数变为64，请求全部结束，进程数变为24，也就是最大空闲进程数
+
+计算公式：
+   max_children计算：
+      使用top 查看php-fpm占用系统内存约1%，系统内存为4G,考虑到服务器上其他资源的使用，将70%内存分配给php-fpm,4028*70%/40(M)=70，设置为64
+      最小空闲位置为16，最大空闲进程设置为24，开启进程数设置时（16 + （24-16）/2）=20
+      
+   serviece php7.2-fpm restart    #重启服务
+   
+   over,thanks!
