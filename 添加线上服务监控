@@ -1,57 +1,57 @@
 1.问题：线上出现大面积的服务中断，本来以为只是昨天添加的任务存在问题，但是发现所有队列失效
 第一步：
-      直接重启守护进程supervisrod,发现直接启动（其实并没有启动，只是一个假象，也没有报错）
+   直接重启守护进程supervisrod,发现直接启动（其实并没有启动，只是一个假象，也没有报错）
 
 第二步：
-      使用单独队列监听，测试一下队列能否正常运转，果然，队列监听失败，原来是代码的问题，因为之前添加任务之后，偶尔忘记队列重启
+   使用单独队列监听，测试一下队列能否正常运转，果然，队列监听失败，原来是代码的问题，因为之前添加任务之后，偶尔忘记队列重启
       
 第三步：
-      立马修正代码，提交，发布
+   立马修正代码，提交，发布
       
 改进措施：
-      <1>是时候安装线上监控了，必须在一分钟之内发现问题，保证服务高可用，监控是必不可少的
-      
-      直接贴代码：file(server.sh)
-      #!/bin/bash
-      msg_script_path="/path/script/msg.php";
+   <1>是时候安装线上监控了，必须在一分钟之内发现问题，保证服务高可用，监控是必不可少的
 
-      ###################
-      #
-      #  nginx服务监控
-      #
-      ###################
-      ngx_path="/var/run/nginx.pid";
-      if [ ! -f $ngx_path ];then
-          $(php $msg_script_path "nginx进程不存在!")
-          exit;
-      fi
-      nginx_pid=$(cat $ngx_path)
-      nginx_num=$(ps -ef | grep $nginx_pid | wc -l)
-      if [ $nginx_num -lt 4 ]
-      then
-          $(php $msg_script_path "nginx进程异常，目前进程数是:${nginx_num}");
-          exit;
-      fi
+   直接贴代码：file(server.sh)
+   #!/bin/bash
+   msg_script_path="/path/script/msg.php";
 
-      ...
+   ###################
+   #
+   #  nginx服务监控
+   #
+   ###################
+   ngx_path="/var/run/nginx.pid";
+   if [ ! -f $ngx_path ];then
+       $(php $msg_script_path "nginx进程不存在!")
+       exit;
+   fi
+   nginx_pid=$(cat $ngx_path)
+   nginx_num=$(ps -ef | grep $nginx_pid | wc -l)
+   if [ $nginx_num -lt 4 ]
+   then
+       $(php $msg_script_path "nginx进程异常，目前进程数是:${nginx_num}");
+       exit;
+   fi
 
-      file(msg.php)
-      if(isset($argv[1])){
-        $msg = $argv[1];
-        $msg_content = date('Y-m-d H:i:s').$msg;
-        $mobile = '153****2156';
-        send_msg($mobile,$msg_content)
-      }
+   ...
+
+   file(msg.php)
+   if(isset($argv[1])){
+     $msg = $argv[1];
+     $msg_content = date('Y-m-d H:i:s').$msg;
+     $mobile = '153****2156';
+     send_msg($mobile,$msg_content)
+   }
     
 测试：
-    chmod +x server.sh      /添加可执行权限
-    sudo service nginx stop
+  chmod +x server.sh      /添加可执行权限
+  sudo service nginx stop
     
 添加计划任务：
-    crontab -e 
-    * * * * * /path/server.sh
+  crontab -e 
+  * * * * * /path/server.sh
     
 result:
-    发送报警短信！
+  发送报警短信！
   
 over,thanks!
