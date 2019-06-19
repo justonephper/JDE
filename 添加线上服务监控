@@ -33,6 +33,8 @@
           exit;
       fi
 
+      ...
+
       file(msg.php)
       if(isset($argv[1])){
         $msg = $argv[1];
