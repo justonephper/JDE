@@ -1,0 +1,52 @@
+1.4个步骤
+  git add .                       //git add .把所有文件放入暂存区
+  git commit -m 'comment'         //git commit把所有文件从暂存区提交进本地仓库
+  git pull                        //远程拉取代码并与本地仓库合并
+  git push                        //git push把所有文件从本地仓库推送进远程仓库
+  
+2.4个区
+  工作区(Working Area)
+  暂存区(Stage)
+  本地仓库(Local Repository)
+  远程仓库(Remote Repository)
+  
+3.5种状态
+  未修改(Origin)
+  已修改(Modified)
+  已暂存(Staged)
+  已提交(Committed)
+  已推送(Pushed)
+  
+4.1 已修改，未暂存（git add .之前，就是只在编辑器进行了修改） 
+  git diff
+  注意：先执行git add .，然后执行git diff，你会发现没有任何结果，所以有了4.2
+  
+4.2 已暂存，未提交
+  git diff --cached
+  
+4.3 已提交，未推送
+  git diff master origin/master
+  注意：master就是你的本地仓库，而origin/master就是你的远程仓库
+  
+5 撤销修改
+5.1 已修改，未暂存
+    指令：git checkout . | git reset --hard
+    可以看到，在执行完git checkout .之后，修改已被撤销，git diff没有任何内容了
+    
+5.2 已暂存，未提交
+    已经执行了git add .，但还没有执行git commit -m "comment"。这时候你意识到了错误，想要撤销，你可以执行：
+    指令：git reset | git checkout . | git reset --hard
+    
+5.3 已提交，未推送
+    你的手太快，你既执行了git add .，又执行了git commit，这时候你的代码已经进入了你的本地仓库，然而你后悔了，怎么办？不要着急，还有办法：
+    指令：git reset --hard origin/master
+    origin/master代表远程仓库，既然你已经污染了你的本地仓库，那么就从远程仓库把代码取回来吧
+    
+5.4 已推送
+    git push了，这时你的代码已经进入远程仓库。如果你想恢复的话，还好，由于你的本地仓库和远程仓库是等价的，你只需要先恢复本地仓库，再强制push到远程仓库就好了
+    指令： git reset --hard HEAD^
+          git push -f
+          
+总结：
+    以上4种状态的撤销我们都用到了同一个命令git reset --hard，前2种状态的用法甚至完全一样，所以只要掌握了git reset --hard这个命令的用法，从此你再也不用担心提交错误了
+ 
