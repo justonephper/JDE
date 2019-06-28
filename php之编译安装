@@ -1,0 +1,31 @@
+1.下载php7.2源码，编译安装，直接编译安装之后，发现问题两点
+  1.1 nginx和php-fpm能进行通信，但是不解析php脚本
+  1.2 安装phpMyadmin安装之后，缺少mysqli支持
+  
+  解决：
+  Q1:nginx配置不解析php，相应是一片空白
+    在nginx配置中添加一行
+       location ~ \.php$ {
+         fastcgi_split_path_info ^(.+\.php)(/.+)$;
+         fastcgi_pass   127.0.0.1:9000;
+         fastcgi_index  index.php;
+         fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;      #添加这一行
+         include fastcgi_params;
+#        include    fastcgi.conf;
+      }
+      
+      补充：
+         fastcgi_params，fastcgi.conf之间的差别是，fastcgi.conf多一行，也就是配置里添加的那一行
+      然后，重新启动nginx,nginx -s reload,php正常解析
+      
+  Q2:安装phpMyadmin之后，不支持缺少mysqli扩展，于是乎，直接进入mysql源码目录找到mysqli目录，进入进行编译安装，php.ini添加extension=mysqli.so,启动之后
+     提示，找不到musqli.so文件，最后还是通过源码安装一下
+     
+     ./configure --with-mysql=mysqlnd --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd
+     sudo make && make install
+     php -m 出现mysqli扩展
+     
+     补充：php7之后，将mysqli扩展移除标准扩展，但是php提供了mysqlnd文件，提供用户在不安装mysql服务的情况下，安装mysqli扩展的能力。
+     
+  在配置的虚拟主机下，index.php文件中使用phpinfo()函数，输出php信息
+  thanks!Over!
