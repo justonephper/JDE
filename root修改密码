@@ -1,0 +1,9 @@
+1.安装ubuntu之后，没有设置root密码
+
+  sudo passwd
+  输入新密码：root
+  输入确认密码:root
+  
+  su root
+  
+  切换成功！
