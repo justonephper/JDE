@@ -1,0 +1,22 @@
+1.新安置的服务器，需要进行用户管理
+  adduser wanghao,一路回车，输入新，确认密码，用户即可进行登录，但是存在问题：一个用户添加一个用户组，我想把用户添加到指定用户组
+  
+2.采用useradd可以指定用户组
+  pos1:添加用户组，groupadd test
+  pos2:添加成员，指定账户目录和登录账户
+      useradd -s /bin/bash -g test -d /home/wanghao -m wanghao
+      #  -s /bin/bash 指定用户的登录shell,否则会出现，用户登录不显示当前位置，只显示一个$符号
+      #  -d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录
+      #  -g 用户组 指定用户所属的用户组
+  pos3:修改/etc/sudoers，进行root权限下放
+      vim /etc/sudoers 
+      把test这个用户组添加一行
+      %rrb
+   
+3.修改用户登录密码：
+  passwd wanghao
+  new password
+  confirm new password
+  update success!
+  
+4.新用户登录
