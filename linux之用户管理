@@ -31,3 +31,11 @@
   
   查看用户所属组：
   groups hao
+
+ 5.添加用户到指定的组/从指定的组中移除用户
+  gpasswd命令是 Linux 下工作组文件/etc/group 和 /etc/gshadow 管理工具。主要功能：管理组
+
+  gpasswd -h
+  gpasswd -a hao rrb  #添加用户到指定的用户组
+  gpasswd -d hao rrb  #从指定的用户组中移除用户
+
