@@ -19,4 +19,15 @@
   confirm new password
   update success!
   
-4.新用户登录
+4.添加成员到用户组
+  usermod -aG 组名 用户名
+   -a :append  追加
+   -G ：附加组
+  ps:
+    usermod -aG rrb hao
+    
+  查看用户所属组信息：
+  id hao
+  
+  查看用户所属组：
+  groups hao
