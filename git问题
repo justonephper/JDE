@@ -1,0 +1,12 @@
+1.仓库代码有私有变为共有之后，路径改变改变导致提交失败
+    解决方式：
+    git remote -v	查看远程仓库地址
+    git remote set-url origin 地址  #重新设置一下仓库路径
+    
+    
+2.git之后，总是报401错误，显示用户需要鉴权
+    原因：1.git版本太低导致，可以直接
+          git clone http://username:userpasswd@uri.git   #指定用户名和密码进行克隆
+          
+         2.升级git版本
+          
