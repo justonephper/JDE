@@ -21,3 +21,31 @@ location ~ \.php(.*)$ { # 正则匹配.php后的pathinfo部分
     fastcgi_param PATH_INFO $1; # 把pathinfo部分赋给PATH_INFO变量
     include        fastcgi_params;
 }
+
+
+
+今天设置path_info之后，总是出现access denies;
+        location ~ \.php(.*)$ { #正则匹配.php后的pathinfo部分
+            fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
+            fastcgi_index index.php;
+#            fastcgi_param SCRIPT_FILENAME  $DOCUMENT_ROOT$fastcgi_script_name;
+#            fastcgi_param PATH_INFO $1; # 把pathinfo部分赋给PATH_INFO变量
+#            fastcgi_param PATH_INFO $fastcgi_path_info
+
+            include fastcgi.conf;
+            include       fastcgi_params;
+        }
+        
+        或者
+        location ~ \.php { #正则匹配.php后的pathinfo部分
+            fastcgi_split_path_info ^(.+\.php)(/.+)$;
+            fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            fastcgi_param  PATH_INFO  $fastcgi_path_info;
+            fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+
+            include fastcgi.conf;
+            include       fastcgi_params;
+        }
+
