@@ -22,9 +22,14 @@ location ~ \.php(.*)$ { # 正则匹配.php后的pathinfo部分
     include        fastcgi_params;
 }
 
+还需要ｐｈｐ.ini中，设置ｃｇｉ.fix_pathinfo = 1;开启一下这个设置
+
 
 
 今天设置path_info之后，总是出现access denies;
+        方式一：
+        １．设置ｐｈｐ.ini中，ｃｇｉ.path_info = 1;
+        2.nginx配置如下：
         location ~ \.php(.*)$ { #正则匹配.php后的pathinfo部分
             fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
             fastcgi_index index.php;
@@ -36,7 +41,7 @@ location ~ \.php(.*)$ { # 正则匹配.php后的pathinfo部分
             include       fastcgi_params;
         }
         
-        或者
+        方式二：
         location ~ \.php { #正则匹配.php后的pathinfo部分
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
             fastcgi_pass  unix:/var/run/php/php7.2-fpm.sock;
@@ -48,4 +53,7 @@ location ~ \.php(.*)$ { # 正则匹配.php后的pathinfo部分
             include fastcgi.conf;
             include       fastcgi_params;
         }
+        //^(.+\.php)(/.+)$
+        //$fastcgi_script_name 对应第一个括号正则匹配的，相当于$1
+        //$fastcgi_path_info   对应第二个括号正则匹配的，相当于$2
 
