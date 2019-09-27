@@ -9,4 +9,14 @@
           git clone http://username:userpasswd@uri.git   #指定用户名和密码进行克隆
           
          2.升级git版本
+         
+3.每次提交输入用户名，密码真的很烦，解决一下!
+    两种途径，
+    一种是修改配置文件，不喜欢找文件，尤其是win下
+    另一种途径是适应指令，这个我比较喜欢，
+    git config --global credential.helper store
+    
+    
+ 
+    
           
