@@ -16,7 +16,10 @@
     另一种途径是适应指令，这个我比较喜欢，
     git config --global credential.helper store
     
-    
- 
-    
-          
+
+4.git clone 报错，显示权限不足
+ 1>查看本地，ssh公钥，若id_ras.pub文件存在，将内容直接拷贝到线上 .ssh/id_rsa，编辑添加
+ 即可进行克隆
+ 2>如果不存在，使用指令生成
+ ssh-keygen -t -rsa -C "153****2156@163.com"
+ 发现存在两个文件 id_rsa 和 id_rsa.pub文件,然后重复1>步骤，即可进行克隆
