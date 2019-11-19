@@ -36,3 +36,6 @@
     git update-index --assume-unchanged .env
     
     发现，修改.env文件后，不会再提交
+    
+    
+    
