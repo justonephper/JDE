@@ -23,3 +23,16 @@
  2>如果不存在，使用指令生成
  ssh-keygen -t -rsa -C "153****2156@163.com"
  发现存在两个文件 id_rsa 和 id_rsa.pub文件,然后重复1>步骤，即可进行克隆
+
+
+5.gitignore文件不生效
+    网上千篇一律的两部曲：
+    git rm -rf --cached .
+    git add .
+    git commit -m "update .gitignore"
+    
+    然后，修改.env文件发现还是不行
+    最后执行：
+    git update-index --assume-unchanged .env
+    
+    发现，修改.env文件后，不会再提交
