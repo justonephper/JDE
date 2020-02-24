@@ -1,0 +1,9 @@
+1.解压PsCC 2017_64bit_gfzwb（安装包），Photoshop CC 2017_pjbd（补丁）
+
+2.解压后，打开安装包，双击Set-up进行安装
+
+3.破解，将Ps关闭后，打开破解工具，双击amtemu.v0.9.2-painter，然后选择，Adobe Photoshop cc 2017,点击install,选择一个目录，选择ps的安装目录，
+	C:\Program Files\Adobe\Adobe Photoshop CC 2017\amtlib.dll文件
+	看到显示，ok，那就是破解成功，然后退出就可以。
+
+注意：如果提示破解失败，请把ps软件关闭以后再重新尝试一下
