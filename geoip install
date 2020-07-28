@@ -1,0 +1,16 @@
+1.下载geoip源码进行安装
+2.解压 
+  1.tar -zxvf *.gz
+  2.phpize
+  3.   ./configure --help  产看配置指定的选项
+  4.   ./configure --with-php-config=/usr/bin/php-config
+  5.   make 
+  6.  make install
+  
+3.安装完成，提示目录安装到了  /usr/lib64/php/modules
+  3.1 配置一个extension的选项
+  存在 php-fpm.conf php-fpm.d php-zts.d php.d php.ini
+    php-fpm.conf 用于进程配置
+    php-zts.d    存放fpm的扩展的配置 例如 gd.ini(extension=gd.so)
+    php.d        作用和php-zts.d一样，只是存放的是cli模式下的扩展配置文件
+    php.ini      php的配置文件
