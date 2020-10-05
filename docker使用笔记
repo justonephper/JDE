@@ -1,0 +1,31 @@
+docker 
+  1. 镜像管理：
+  镜像列表: docker images
+  镜像删除: docker rmi image_name
+  镜像搜索: docker search image_name
+  镜像拉取: docker pull image_name
+  
+  2. 容器管理：
+  容器列表: docker ps -a      # -a 展示所有容器，包括启动和没启动的，不加-a,则不展示未启动的容器
+  容器删除: docker rm container
+  容器启动: docker start container_id
+  容器停止: docker stop container_id
+  
+  3. 进入容器：
+  docker run -it container /bin/bash   #exit退出时，容器停止工作
+  docker attach -it container_id /bin/bash #进入已经启动的容器，但是exit退出后，容器停止
+  docker exec -it container_id /bin/bash   #进入已经启动的容器，exit退出后，容器正常工作
+  
+  4. 映射管理：
+  docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWOED -v /Users/hao/mysql/conf.d:/etc.mysql/conf.d 
+  
+  -p 容器端口映射到本机端口
+  -e 设置参数
+  -v 将主机目录挂在到容器目录
+  
+  
+  
+  
+  
+  
+  
