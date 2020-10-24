@@ -1,9 +1,23 @@
 1.问题：本地系统是ubuntu16.0,没有了windows系统下的Xshell工具，还好linux系统下提供ssh命令行工具
   远程服务一定是开启了ssh-server服务，否则xshel也不可能链接上，进行日常的维护和管理
-  eg1:
-      ssh user_name@127.0.0.1   回车
-      键入user_pwd               回车
-      
-      connect success ...
-      指令 a,b,c
-      exit                      #退出
+
+2.使用docker创建一个崭新的ubuntu系统，安装ssh服务
+  1> ssh服务提供两个端client-server,所以你需要安装两个服务,客户端（非必须
+  2）apt-get install openssh-server,安装服务端
+  3) apt-get install openssh-client,安装客户端
+  
+3.安装完成后，开始配置
+  /etc/ssh/   目录
+  相关文件 ssh_config(客户端配置文件)  sshd_config(服务端配置文件)
+  
+4.设置密码登录：
+  找到PermitRootLogin，将后面的no改为yes。意思就是开启root登录。
+  再找到PasswordAuthentication，将后面的no改为yes。意思就是开启密码认证。
+  
+5.如果忘记了自己的密码或者是新启的docker,可以设置密码：
+  指令：passwd root
+  
+6.启动服务：
+  service ssh start
+  
+  
