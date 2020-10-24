@@ -23,6 +23,11 @@ docker
   -e 设置参数
   -v 将主机目录挂在到容器目录
   
+  5.容器管理：
+  拉取镜像之后，镜像是空白的，开始更新系统镜像源，安装常用工具，如何复制容器呢？可以把容器保存成镜像源
+  docker commit 容器名称 新镜像名称
+  docker commit container new_images_name
+  
   
   
   
