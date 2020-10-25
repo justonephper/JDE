@@ -1,0 +1,14 @@
+1.Tools -> Deployment -> Configuraton
+2.主要配置连个地方：
+  1>connection
+    1>>选择传输协议，选择sftp
+    2>>选择连接配置，主要配置服务端ip,用户名，密码
+    3>>Root Path:这里使用"/"就好，因为后面还有mappings设置，后面的设置都会在这个路径基础上配置
+  2>mappings
+    本地路径与服务器路径的一个映射
+    Local path:本地需要做映射根目录
+    Deplotment path:服务端自动上传的目录的相对路径，建立在第一步Root Path路径之上，例如第一步路径："/home/hao",Deployment path值如果是："go/test",那么结果是：/home/hao/go/test
+    
+    
+    
+    
