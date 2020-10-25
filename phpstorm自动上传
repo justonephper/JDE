@@ -9,6 +9,14 @@
     Local path:本地需要做映射根目录
     Deplotment path:服务端自动上传的目录的相对路径，建立在第一步Root Path路径之上，例如第一步路径："/home/hao",Deployment path值如果是："go/test",那么结果是：/home/hao/go/test
     
+  3>设置自动上传：
+    Tools/ Deployment -> Automatic Upload(always)
+    
+  4>test！
+  在本地创建目录，在服务端指定映射目录下，ls查看，新建目录自动生成
+  
+  
+    
     
     
     
