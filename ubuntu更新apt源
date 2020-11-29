@@ -1,0 +1,26 @@
+1.新安装的ubuntu系统，缺少常用的工具，甚至不支持vim等编辑工具
+
+1.1 修改apt数据源
+    位置：/etc/apt/  
+    文件：source.list
+
+    备份原来的数据源文件
+    copy source.list source.list_bak
+    
+    清空source.list文件
+    echo "" > source.list
+
+    写入新的数据地址（采用多行写入的形式）
+    cat>source.list<<EOF  回车
+    粘贴新的数据包源地址
+    EOF   #结束输入
+
+    更新apt
+    apt-get update
+    apt-get upgrade(更新已安装的工具，这里应该没有更新，因为本身系统并没有安装工具)
+
+   安装vim工具
+   apt install vim
+
+   res:vim安装成功
+
