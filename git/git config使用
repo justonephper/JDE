@@ -1,0 +1,29 @@
+1. git配置
+      git config --global user.name haoge
+      git config --global user.email 153****2156@163.com
+      
+      这个两个指令是我们刚开始安装git的时候执行过的，这两个信息会一直出现的我们的所以提交记录里，用于标识提交者
+      
+   1.1 执行 git config指令，发现配置文件分为3个级别，分别是 golbal,system,local
+   
+      1.1.1 配置文件优先级
+        local > system > local
+        
+      1.1.2 查看配置文件
+        git config --global -l
+        git config --system -l
+        git config --local -l
+        
+      1.1.3 查看所有的变量
+        git config -l   # list
+        
+      1.1.4 设置变量
+        git config --global --add user.age 23
+        
+      1.1.5 获取变量
+        git config --global --get user.age
+        
+      1.1.6 删除变量
+        git config --global --unset user.age
+        
+        
