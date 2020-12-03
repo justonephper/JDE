@@ -1,0 +1,87 @@
+docker 常用指令
+
+1. 镜像管理
+  1.1 查看镜像
+    docker images
+  
+  1.2 在docker Hub上搜索镜像
+    docker search ubuntu
+  
+    搜索指定star数量以上的镜像
+    docker search ubuntu -s 2000               #不推荐
+    docker search ubuntu --filter=stars=2000   #推荐  查询star星数超过2000的镜像
+  
+  1.3 安装镜像
+    docker pull 镜像名称
+  
+  1.4 删除镜像
+    docker rmi 镜像名称
+    
+2. 容器管理
+   2.1 创建容器
+      docker run -it -p 8088:8088 -v /e/go:/mnt/go image_name /bin/bash
+      
+      注释：
+        -t: 在新容器内指定一个伪终端或终端
+        -i: 允许你对容器内的标准输入 (STDIN) 进行交互
+        -p: 端口映射，p1:p2,p1:宿主机端口号，p2:容器端口
+        -v: 挂载数据卷, path1:path2,path1:宿主机的目录，path2:容器中的目录
+        -d: 不会进入容器，想要进入容器需要使用指令 docker exec
+        
+   2.2 退出容器
+      exit
+      
+   2.3 进入已经启动的容器
+      2.3.1 docker attach 容器id           
+      注意：退出会导致容器关闭
+
+      2.3.2 docker exec -it 容器id /bin/bash
+      注意：退出不会导致同容器关闭
+      
+   2.4 启动，关闭，重启，删除
+       docker start   容器id
+       docker stop    容器id
+       docker restart 容器id
+       docker rm      容器id
+       
+    2.5 导入，导出容器
+        2.5.1 导出容器,存储为归档文件
+          docker export 容器id > ***.tar   
+        2.5.2 导入归档文件，并存储为镜像
+          cat ***.tar | docker import 镜像名称
+        2.5.3 从url导入为镜像
+          docker import https://www.url.com 镜像名称
+        
+    2.6 查看所有的容器
+      docker ps -a
+      注意：-a标识查询所有的容器，不加-a只查询启动的容器
+      
+    2.7 查看容器的端口映射情况
+      docker port 容器id
+      或
+      docker port 容器名称
+      
+    2.8 修改容器名称
+      docker rename 容器id new_name
+      
+    2.9 容器提交成新的镜像
+      docker commit -m="add golang" -a="hao" e218edb10161 ubuntu:v2
+      
+      注释：
+          -m: 提交的描述信息
+          -a: 指定镜像作者
+          e218edb10161：容器 ID
+          ubuntu:v2: 指定要创建的目标镜像名
+          
+    
+      
+      
+    
+    
+        
+       
+   
+  
+
+
+
