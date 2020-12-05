@@ -1,0 +1,39 @@
+主题：容器互相通信
+                                                                        
+    1. 宿主机与容器进行通信
+      docker run -itd --name c1 -p 8080:8080 ubuntu /bin/bash
+    
+      这个时候，宿主机就与docker建立了联系，可以进行宿主机与容器之间的通信了
+      
+      
+    2. 创建一个网络，然后启动容器的时候指定一下就可以
+    
+        2.1 查看现有的网络列表
+          docker network ls
+          
+        2.2 创建一个新的网络
+          docker network create -d bridge network-name
+          
+        2.3.1 启动容器，指定网络
+          docker run -itd image1 --name c1 --network network-name /bin/bash
+          docker run -itd image1 --name c2 --network network-name /bin/bash
+          
+          进入容器c1,
+            docker exec -it c1|c1的容器id
+            ping c1
+            
+          通信成功
+          
+        2.3.2 加入一个新容器到网络中：
+          docker network connet 网络名称 容器名称|容器id
+          
+        2.3.3 从网络中删除一个容器
+          docker network disconnect 网络名称 容器名称|容器id
+          
+        到这里才明白，原来网络也是分组的，一个网络就代表一个网络分组，一个网络分组使用一个网管
+        
+        试验结果：
+        net1下有容器1，net2下有容器2，容器1和容器2不能正常通信，只有划分到同一个网络下才能通信
+        
+
+  
