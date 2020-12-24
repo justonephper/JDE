@@ -2,7 +2,7 @@
 
 pos1:源码准备,安装最新稳定版本（1.16）
     wget http://nginx.org/download/nginx-1.16.0.tar.gz    #下载
-    tar -zxvf nginx-1.19.0.tar.gz                         #解压
+    tar -zxvf nginx-1.16.0.tar.gz                         #解压
     mv /usr/local/src/                                    #习惯性将源码移动到这里
     cd nginx-1.16.0
     ./configure --help                                    #查看nginx安装的配置参数
