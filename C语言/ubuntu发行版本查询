@@ -1,0 +1,9 @@
+1. cat /etc/issue
+  Ubuntu 20.04.1 LTS \n \l
+  
+2. 替换apt镜像源
+  /etc/apt/source.list文件
+  
+3.apt-get install build-essential
+
+注意：先确定ubuntu的发行版本，找到对应的apt源，才能正常安装工具包
