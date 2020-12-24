@@ -1,0 +1,32 @@
+安装nginx需要4个先决条件，安装gcc,pcre,zlib,openssl
+
+1. GCC编辑器
+
+      apt-get install gcc
+      
+2. PCRE库
+      PCRE库支持正则表达式。如果我们在配置文件nginx.conf中使用了正则表达式，那么在编译Nginx时就必须把PCRE库编译进Nginx，因为Nginx的HTTP模块需要靠它来解析正则表达式。
+  另外，pcre-devel是使用PCRE做二次开发时所需要的开发库，包括头文件等，这也是编译Nginx所必须使用的。可以这样安装：
+  
+      apt-get install libpcre3 libpcre3-dev
+      
+3. zlib库
+      zlib库用于对HTTP包的内容做gzip格式的压缩，如果我们在nginx.conf中配置了gzip on，并指定对于某些类型（content-type）的HTTP响应使用gzip来进行压缩以减少网络传输量，
+  则在编译时就必须把zlib编译进Nginx。zlib-devel是二次开发所需要的库。可以这样安装：
+  
+      apt-get install zlib1g-dev
+      
+ 4. OpenSSL开发库
+      如果服务器不只是要支持HTTP，还需要在更安全的SSL协议上传输HTTP，那么需要拥有OpenSSL。另外，如果我们想使用MD5、SHA1等散列函数，那么也需要安装它。可以这样安装：
+      
+      apt-get install openssl libssl-dev 
+      
+      
+      
+      
+      
+      
+      
+      
+
+    
