@@ -17,3 +17,10 @@ linux下批量杀死进程
 　　  “xargs kill -15”中的xargs命令是用来把前面命令的输出结果（PID）作为“kill -15”命令的参数，并执行该令。 
 
       “kill -15”会正常退出指定进程，-9强行杀掉
+      
+      
+根据进程名称删除：
+
+    1. killall -9 process_name
+    
+    2. pkill -9 process_name
