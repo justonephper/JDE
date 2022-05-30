@@ -26,6 +26,8 @@ yum install erlang
 yum install rabbitmq-server
 ```
 
+常规使用
+```
 开启rabbit-server: systemctl start rabbitmq-server
 查看状态：rabbitmqctl status
 
@@ -127,3 +129,4 @@ RabbitMQTool::instance(队列名名)->rMq(取出数量);
 
 RabbitMQ的四种交换机介绍
 https://www.jianshu.com/p/469f4608ce5d
+```
