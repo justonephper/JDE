@@ -37,21 +37,7 @@ rabbitmq-plugins enable rabbitmq_management
 
 rabbitmqctl start_app
 
-
-添加用户密码配置文件：
-vi /etc/rabbitmq/rabbitmq.conf
-
-#默认用户名
-default_user = guest
-#默认密码
-default_pass = guest
-#远程用户访问
-loopback_users = none
-
-
 然后重启rabbitmq：systemctl restart rabbitmq-server
-
-
 
 
 # rabbitmqctl list_queues
@@ -73,12 +59,6 @@ loopback_users = none
 （8）修改密码：rabbitmqctl change_password root 123456
 （9）清除密码：rabbitmqctl clear_password root
 
-
-
-
-
-
-
 6、安装rabbitmq-c
 
 cd /data/soft/
@@ -86,9 +66,6 @@ wget -c https://github.com/alanxz/rabbitmq-c/releases/download/v0.8.0/rabbitmq-c
 tar -zxvf rabbitmq-c-0.8.0.tar.gz
 cd rabbitmq-c-0.8.0
 ./configure --prefix=/usr/local/services/rabbitmq-c-0.8.0 && make && make install
-
-
-
 
 
 7、安装amqp扩展  https://pecl.php.net/package/amqp
@@ -102,9 +79,6 @@ cd amqp-1.10.0
 make && make install
 
 
-
-
-
 8、开启amqp扩展
 vim /usr/local/services/php7/etc/php.ini
 extension=/usr/local/services/php7/lib/php/extensions/no-debug-non-zts-20190902/amqp.so
@@ -112,11 +86,8 @@ extension=/usr/local/services/php7/lib/php/extensions/no-debug-non-zts-20190902/
 重启php-fpm
 
 
-
 9、代码安装 
 composer require php-amqplib/php-amqplib
-
-
 
 
 使用
@@ -124,7 +95,6 @@ composer require php-amqplib/php-amqplib
 RabbitMQTool::instance(队列名名)->wMq(写入内容);
 读队列
 RabbitMQTool::instance(队列名名)->rMq(取出数量);
-
 
 
 RabbitMQ的四种交换机介绍
