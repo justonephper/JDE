@@ -38,4 +38,7 @@
   gpasswd -h
   gpasswd -a hao rrb  #添加用户到指定的用户组
   gpasswd -d hao rrb  #从指定的用户组中移除用户
+  
+ 6. 删除用户组
+  groupdel rrb
 
