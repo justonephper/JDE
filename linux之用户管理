@@ -42,3 +42,17 @@
  6. 管理用户组
   groupadd rrb
   groupdel rrb
+  
+ 7. 更改用户的主组 -g
+    -g与-G区别
+    -g是更改用户的主组
+    ps:
+        usermod -g groupname username
+        
+    -G是将用户加到新的组里
+    ps:
+        usermod -G groupname username
+        
+        
+        
+        
