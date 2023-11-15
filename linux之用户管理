@@ -52,6 +52,9 @@
     -G是将用户加到新的组里
     ps:
         usermod -G groupname username
+
+8. 删除用户，同时删除账号目录
+    userdel -r username
         
         
         
