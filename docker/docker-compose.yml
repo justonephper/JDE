@@ -1,0 +1,94 @@
+version: "3.8"
+services:
+    global-center:
+        image: jdk
+        container_name: indian-global-center
+        restart: always
+        tty: true
+        ports:
+          - "8090:8090"
+          - "5555:5555"
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.6
+
+    register-gateway:
+        image: jdk
+        container_name: indian-register-geteway
+        restart: always
+        tty: true
+        ports:
+          - "1111:1111"
+          - "2222:2222"
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.7
+
+    business-time-worker:
+        image: jdk
+        container_name: indian-business-time-worker
+        restart: always
+        tty: true
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.2
+
+    web-console-kefu-pay:
+        image: jdk
+        container_name: indian-web-console-kefu-pay
+        restart: always
+        tty: true
+        ports:
+          - "90:90"
+          - "91:91"
+          - "92:92"
+          - "93:93"
+          - "94:94"
+          - "95:95"
+          - "800:800"
+          - "4444:4444"
+          - "8101:8101"
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.5
+
+    ai-rabbitmq:
+        image: jdk
+        container_name: indian-ai-rabbitmq
+        restart: always
+        tty: true
+        ports:
+          - "88:88"
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.3
+
+    nginx:
+        image: jdk
+        container_name: indian-nginx
+        restart: always
+        tty: true
+        ports:
+          - "80:80"
+        volumes:
+          - C:\Users\86153\indian:/home/www
+        networks:
+          dev:
+            ipv4_address: 172.33.0.4
+
+networks:
+  dev:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.33.0.0/24
